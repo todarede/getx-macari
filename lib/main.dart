@@ -31,10 +31,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   @override
   Widget build(BuildContext context) {
+    //AQUI INSTANCIAMOS O CONTROLLER (DA UMA OLHADA NO ARQUIVO CONTADOR_CONTROLLER) TEM TUDO LA..
     final ContadorController controller = Get.put(ContadorController());
 
     return Scaffold(
@@ -48,22 +47,31 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Quantas vezes vc apertou o botao?',
             ),
-            Obx(() => Text(
-                  "${controller.contador}",
-                  style: Theme.of(context).textTheme.headline4,
-                ))
+
+            //ESSA FUNCAO AQUI Obx é do getX, ela que renderiza o widget alterado...
+            Obx(
+              () => Text(
+                "${controller.contador}",
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ),
+            
           ],
         ),
       ),
       floatingActionButton: Row(
         children: [
-          SizedBox(width: 50,),
+          SizedBox(
+            width: 50,
+          ),
           FloatingActionButton(
             onPressed: () => controller.diminui(),
             tooltip: 'SOMA',
             child: Icon(Icons.remove),
           ),
-          SizedBox(width: 20,),
+          SizedBox(
+            width: 20,
+          ),
           FloatingActionButton(
             onPressed: () => controller.soma(),
             tooltip: 'SOMA',
