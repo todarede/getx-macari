@@ -1,63 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_macari/contador_controller.dart';
+import 'package:get/get.dart';
 
-import 'tela2.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class Tela2 extends StatelessWidget {
   @override
+  
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    //AQUI INSTANCIAMOS O CONTROLLER (DA UMA OLHADA NO ARQUIVO CONTADOR_CONTROLLER) TEM TUDO LA..
     final ContadorController controller = Get.put(ContadorController());
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        backgroundColor: Colors.red[600],
+        title: Text('ESTA É A TELA 2'),
+        
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Quantas vezes vc apertou o botao?',
+              'CONTOU',
+              style: Theme.of(context).textTheme.headline4,
             ),
 
             //ESSA FUNCAO AQUI Obx é do getX, ela que renderiza o widget alterado...
+            
             Obx(
               () => Text(
                 "${controller.contador}",
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headline1,
               ),
             ),
-
+            
+            
           ],
         ),
       ),
@@ -67,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 50,
           ),
           FloatingActionButton(
+            backgroundColor: Colors.red[600],
             heroTag: null,
             onPressed: () => controller.diminui(),
             tooltip: 'SOMA',
@@ -76,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 20,
           ),
           FloatingActionButton(
+            backgroundColor: Colors.green[600],
             heroTag: null,
             onPressed: () => controller.soma(),
             tooltip: 'SOMA',
@@ -83,15 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           SizedBox(
             width: 20,
-          ), 
+          ),          
           FloatingActionButton(
+            backgroundColor: Colors.grey[600],
             heroTag: null,
-            onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => Tela2())),
+            onPressed: () => Navigator.of(context).pop(),
             tooltip: '',
-            child: Text('TELA2'),
-          ),
-
+            child: Text('voltar'),
+          ),          
         ],
       ),
     );
